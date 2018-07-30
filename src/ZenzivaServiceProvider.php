@@ -15,6 +15,7 @@ class ZenzivaServiceProvider extends ServiceProvider
             ->needs(ZenzivaClient::class)
             ->give(function () {
                 $config = config('services.zenziva');
+
                 return new ZenzivaClient(
                     $config['username'],
                     $config['password'],
