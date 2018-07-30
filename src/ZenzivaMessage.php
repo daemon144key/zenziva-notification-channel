@@ -8,7 +8,7 @@ class ZenzivaMessage
     public $content;
 
     /**
-     * Factory instances
+     * Factory instances.
      *
      * @param string $content
      *
@@ -20,8 +20,8 @@ class ZenzivaMessage
     }
 
     /**
-     * Default Constructor
-     * 
+     * Default Constructor.
+     *
      * @param string $content
      */
     public function __construct($content = '')
@@ -30,7 +30,7 @@ class ZenzivaMessage
     }
 
     /**
-     * Set content of the SMS message
+     * Set content of the SMS message.
      *
      * @param string $content
      *
@@ -44,7 +44,7 @@ class ZenzivaMessage
     }
 
     /**
-     * Get content of the SMS message
+     * Get content of the SMS message.
      *
      * @return string
      */
