@@ -15,11 +15,7 @@ class ZenzivaClientTest extends \PHPUnit_Framework_TestCase
     {
         parent::setUp();
 
-        try {
-            $this->zenzivaClient = new ZenzivaClient(env('ZENZIVA_SMS_CLIENT_USERNAME', ''), env('ZENZIVA_SMS_CLIENT_PASSWORD', ''));
-        } catch (\Exception $e) {
-            $this->zenzivaClient = new ZenzivaClient('', ''); // if helper env() not defined in testing environment
-        }
+        $this->zenzivaClient = new ZenzivaClient(env('ZENZIVA_SMS_CLIENT_USERNAME', ''), env('ZENZIVA_SMS_CLIENT_PASSWORD', ''));
     }
 
     public function tearDown()

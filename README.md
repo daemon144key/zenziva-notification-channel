@@ -2,8 +2,8 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/daemon144key/zenziva-notification-channel.svg?style=flat-square)](https://packagist.org/packages/daemon144key/zenziva-notification-channel)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/daemon144key/zenziva-notification-channel/master.svg?style=flat-square)](https://travis-ci.org/daemon144key/zenziva-notification-channel)
-[![StyleCI](https://styleci.io/repos/65714964/shield)](https://styleci.io/repos/65714964)
+[![Build Status](https://travis-ci.org/daemon144key/zenziva-notification-channel.svg?branch=master)](https://travis-ci.org/daemon144key/zenziva-notification-channel)
+[![StyleCI](https://github.styleci.io/repos/142868777/shield?branch=master)](https://github.styleci.io/repos/142868777)
 [![Total Downloads](https://img.shields.io/packagist/dt/daemon144key/zenziva-notification-channel.svg?style=flat-square)](https://packagist.org/packages/daemon144key/zenziva-notification-channel)
 
 
@@ -12,7 +12,7 @@ This package makes it easy to send SMS notifications using [zenziva.id](http://w
 ## Contents
 
 - [Installation](#installation)
-    - [Setting up the Clickatell service](#setting-up-the-zenziva-notification-channel-service)
+    - [Setting up the Zenziva service](#setting-up-the-zenziva-notification-channel-service)
 - [Usage](#usage)
 - [Changelog](#changelog)
 - [Testing](#testing)
