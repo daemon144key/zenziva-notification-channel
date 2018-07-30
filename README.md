@@ -4,9 +4,6 @@
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![Build Status](https://img.shields.io/travis/daemon144key/zenziva-notification-channel/master.svg?style=flat-square)](https://travis-ci.org/daemon144key/zenziva-notification-channel)
 [![StyleCI](https://styleci.io/repos/65714964/shield)](https://styleci.io/repos/65714964)
-[![SensioLabsInsight](https://img.shields.io/sensiolabs/i/853ee111-4bcf-4955-842c-dcd666da77a1.svg?style=flat-square)](https://insight.sensiolabs.com/projects/853ee111-4bcf-4955-842c-dcd666da77a1)
-[![Quality Score](https://img.shields.io/scrutinizer/g/daemon144key/zenziva-notification-channel.svg?style=flat-square)](https://scrutinizer-ci.com/g/daemon144key/zenziva-notification-channel)
-[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/daemon144key/zenziva-notification-channel/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/daemon144key/zenziva-notification-channel/?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/daemon144key/zenziva-notification-channel.svg?style=flat-square)](https://packagist.org/packages/daemon144key/zenziva-notification-channel)
 
 
