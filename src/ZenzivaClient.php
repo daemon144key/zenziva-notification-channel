@@ -2,7 +2,6 @@
 
 namespace TuxDaemon\ZenzivaNotificationChannel;
 
-use stdClass;
 use Requests;
 use TuxDaemon\ZenzivaNotificationChannel\Exceptions\ZenzivaException;
 
@@ -12,56 +11,56 @@ class ZenzivaClient
     const TYPE_MASKING = 'masking';
 
     /**
-     * Zenziva end point
+     * Zenziva end point.
      *
      * @var string
      */
     protected $url = 'https://{subdomain}.zenziva.net/apps/smsapi.php';
 
     /**
-     * Zenziva username
+     * Zenziva username.
      *
      * @var string
      */
     protected $username;
 
     /**
-     * Zenziva password
+     * Zenziva password.
      *
      * @var string
      */
     protected $password;
 
     /**
-     * Phone number
+     * Phone number.
      *
      * @var string
      */
     public $to;
 
     /**
-     * Message
+     * Message.
      *
      * @var string
      */
     public $text;
 
     /**
-     * Sub-domain
+     * Sub-domain.
      *
      * @var string
      */
     public $subdomain = 'reguler';
 
     /**
-     * SMS Type : Masking or reguler
+     * SMS Type : Masking or reguler.
      *
      * @var string
      */
     public $type = self::TYPE_REGULER;
 
     /**
-     * Create the instance
+     * Create the instance.
      *
      * @param string $username
      * @param string $password
@@ -77,7 +76,7 @@ class ZenzivaClient
     }
 
     /**
-     * Set destination phone number
+     * Set destination phone number.
      *
      * @param $to  Phone number
      *
@@ -91,7 +90,7 @@ class ZenzivaClient
     }
 
     /**
-     * Set messages
+     * Set messages.
      *
      * @param $text  Message
      *
@@ -109,7 +108,7 @@ class ZenzivaClient
     }
 
     /**
-     * Set sub-domain
+     * Set sub-domain.
      *
      * @param $subdomain  Sub-domain
      *
@@ -123,9 +122,9 @@ class ZenzivaClient
     }
 
     /**
-     * Set masking
+     * Set masking.
      *
-     * @param boolean $masking  Masking
+     * @param bool $masking  Masking
      *
      * @return self
      */
@@ -140,14 +139,14 @@ class ZenzivaClient
      * @param $to  Phone number
      * @param $text  Message
      *
-     * @return integer Number of processed notifications
+     * @return int Number of processed notifications
      * @throws \ZenzivaException
      */
     public function send($to, $text)
     {
         $destinationNumbers = $to;
         if (! is_array($destinationNumbers)) {
-            $destinationNumbers = [ $destinationNumbers ];
+            $destinationNumbers = [$destinationNumbers];
         }
 
         $nbProcessed = 0;
@@ -158,7 +157,7 @@ class ZenzivaClient
                     throw new ZenzivaException('Text should be string type!');
                 }
 
-                $this->to   = ! empty($number) ? $number : $this->to;
+                $this->to = ! empty($number) ? $number : $this->to;
                 $this->text = ! empty($text) ? $text : $this->text;
 
                 if (empty($this->to)) {
@@ -176,7 +175,7 @@ class ZenzivaClient
                 $nbProcessed++;
             }
         }
-        
+
         return $nbProcessed;
     }
 
@@ -190,7 +189,7 @@ class ZenzivaClient
     }
 
     /**
-     * Build query string
+     * Build query string.
      *
      * @return string
      */
@@ -209,13 +208,13 @@ class ZenzivaClient
         $params = http_build_query([
             'userkey' => $this->username,
             'passkey' => $this->password,
-            'tipe'    => $this->type,
-            'nohp'    => $this->to,
-            'pesan'   => $this->text,
+            'tipe' => $this->type,
+            'nohp' => $this->to,
+            'pesan' => $this->text,
         ]);
-        
+
         $params = urldecode($params);
 
-        return $url . '?' . $params;
+        return $url.'?'.$params;
     }
 }
