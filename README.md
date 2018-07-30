@@ -37,7 +37,7 @@ You must install the service provider and add to your `config/app.php` (skip for
 // config/app.php
 'providers' => [
     ...
-    TuxDaemon\ZenzivaNotificationChannel\ZenzicaServiceProvider::class,
+    TuxDaemon\ZenzivaNotificationChannel\ZenzivaServiceProvider::class,
 ],
 ```
 
@@ -74,8 +74,7 @@ class OrderCreated extends Notification
 
     public function toZenziva($notifiable)
     {
-        return (new ZenzivaMessage())
-            ->content("Your order had created!");
+        return ZenzivaMessage::create("Your order had created!");
     }
 }
 ```

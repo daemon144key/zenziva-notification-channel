@@ -4,7 +4,7 @@ namespace TuxDaemon\ZenzivaNotificationChannel;
 
 use Illuminate\Support\ServiceProvider;
 
-class ZenzicaServiceProvider extends ServiceProvider
+class ZenzivaServiceProvider extends ServiceProvider
 {
     /**
      * Register the application services.

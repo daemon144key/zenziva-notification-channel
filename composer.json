@@ -40,7 +40,7 @@
         },
         "laravel": {
             "providers": [
-                "TuxDaemon\\ZenzivaNotificationChannel\\ZenzicaServiceProvider"
+                "TuxDaemon\\ZenzivaNotificationChannel\\ZenzivaServiceProvider"
             ]
         }
     },
