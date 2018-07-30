@@ -54,7 +54,7 @@ class ZenzivaClientTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException(
             ZenzivaException::class,
-            "One of your destination phone number is empty!"
+            'One of your destination phone number is empty!'
         );
 
         $to = ['']; // empty number
