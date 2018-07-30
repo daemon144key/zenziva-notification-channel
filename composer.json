@@ -1,0 +1,58 @@
+{
+    "name": "daemon144key/zenziva-notification-channel",
+    "description": "Zenziva SMS notifications driver.",
+    "keywords": ["laravel", "notifications", "sms", "zenziva"],
+    "type": "library",
+    "homepage": "https://github.com/daemon144key/zenziva-notification-channel",
+    "license": "MIT",
+    "require": {
+        "php": ">=5.6.4",
+        "illuminate/notifications": "5.3.*|5.4.*|5.5.*",
+        "illuminate/support": "5.3.*|5.4.*|5.5.*",
+        "rmccue/requests": "^1.7"
+    },
+    "require-dev": {
+        "mockery/mockery": "^0.9.5",
+        "phpunit/phpunit": "4.*"
+    },
+    "authors": [
+        {
+            "name": "Joel Hutasoit",
+            "email": "joel@hutasoit.net"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "TuxDaemon\\ZenzivaNotificationChannel\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "TuxDaemon\\ZenzivaNotificationChannel\\Test\\": "tests"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        },
+        "laravel": {
+            "providers": [
+                "TuxDaemon\\ZenzivaNotificationChannel\\ZenzicaServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "scripts": {
+        "code-validation": [
+            "! find src -type f -name \"*.php\" -exec php -l {} \\; |  grep -v 'No syntax errors'"
+        ],
+        "test": "vendor/bin/phpunit"
+    },
+    "support": {
+        "issues": "https://github.com/daemon144key/zenziva-notification-channel/issues",
+        "source": "https://github.com/daemon144key/zenziva-notification-channel"
+    }
+}
