@@ -27,8 +27,8 @@
     </logging>
     <php>
         <env name="APP_ENV" value="testing"/>
-        <env name="ZENZIVA_SMS_CLIENT_USERNAME" value="zenziva"/>
-        <env name="ZENZIVA_SMS_CLIENT_PASSWORD" value="zenziva_pass"/>
+        <env name="ZENZIVA_SMS_CLIENT_USERKEY" value="zenziva"/>
+        <env name="ZENZIVA_SMS_CLIENT_PASSKEY" value="zenziva_pass"/>
         <env name="ZENZIVA_SMS_CLIENT_MASKING" value="false"/>
     </php>
 </phpunit>

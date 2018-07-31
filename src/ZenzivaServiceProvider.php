@@ -17,8 +17,8 @@ class ZenzivaServiceProvider extends ServiceProvider
                 $config = config('services.zenziva');
 
                 return new ZenzivaClient(
-                    $config['username'],
-                    $config['password'],
+                    $config['userkey'],
+                    $config['passkey'],
                     $config['masking']
                 );
             });
