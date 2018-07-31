@@ -18,18 +18,18 @@ class ZenzivaClient
     protected $url = 'https://{subdomain}.zenziva.net/apps/smsapi.php';
 
     /**
-     * Zenziva username.
+     * Zenziva userkey.
      *
      * @var string
      */
-    protected $username;
+    protected $userkey;
 
     /**
-     * Zenziva password.
+     * Zenziva passkey.
      *
      * @var string
      */
-    protected $password;
+    protected $passkey;
 
     /**
      * Phone number.
@@ -62,13 +62,13 @@ class ZenzivaClient
     /**
      * Create the instance.
      *
-     * @param string $username
-     * @param string $password
+     * @param string $userkey
+     * @param string $passkey
      */
-    public function __construct($username, $password, $isMasking = false)
+    public function __construct($userkey, $passkey, $isMasking = false)
     {
-        $this->username = $username; // username
-        $this->password = $password; // password
+        $this->userkey = $userkey; // userkey
+        $this->passkey = $passkey; // passkey
 
         if ($isMasking) {
             $this->masking();
@@ -196,7 +196,7 @@ class ZenzivaClient
     protected function buildQuery()
     {
         if ($this->type == self::TYPE_MASKING) {
-            $this->subdomain = 'alpha'; // self::TYPE_MASKING;
+            $this->subdomain = 'alpha';
         }
 
         if (empty($this->subdomain)) {
@@ -206,8 +206,8 @@ class ZenzivaClient
         $url = str_replace('{subdomain}', $this->subdomain, $this->url);
 
         $params = http_build_query([
-            'userkey' => $this->username,
-            'passkey' => $this->password,
+            'userkey' => $this->userkey,
+            'passkey' => $this->passkey,
             'tipe' => $this->type,
             'nohp' => $this->to,
             'pesan' => $this->text,

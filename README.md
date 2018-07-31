@@ -40,14 +40,14 @@ You must install the service provider and add to your `config/app.php` (skip for
 
 ### Setting up the zenziva-notification-channel service
 
-Add your Zenziva account username and password to your `config/services.php`:
+Add your Zenziva account userkey and passkeyto your `config/services.php`:
 
 ```php
 // config/services.php
 ...
 'zenziva' => [
-    'username' => env('ZENZIVA_SMS_CLIENT_USERNAME', ''),
-    'password' => env('ZENZIVA_SMS_CLIENT_PASSWORD', ''),
+    'userkey' => env('ZENZIVA_SMS_CLIENT_USERKEY', ''),
+    'passkey' => env('ZENZIVA_SMS_CLIENT_PASSKEY', ''),
     'masking' => env('ZENZIVA_SMS_CLIENT_MASKING', false)
 ],
 ...
