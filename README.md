@@ -43,7 +43,7 @@ Additionally you can add related facade in `config/app.php` :
 // config/app.php
 'aliases' => [
     ...
-    'ZenzivaClient' => TuxDaemon\ZenzivaNotificationChannel\ZenzivaFacade::class,
+    'ZenzivaClient' => TuxDaemon\ZenzivaNotificationChannel\Facades\ZenzivaFacade::class,
 ],
 ```
 
