@@ -44,7 +44,7 @@ class ZenzivaSendCommand extends Command
             $message = $this->argument('message');
 
             $nbProcessed = $client->send($phoneNumber, $message);
-            $this->info('[Zenziva] Total SMS sent : ' . $nbProcessed);
+            $this->info('[Zenziva] Total SMS sent : '.$nbProcessed);
         } catch (\Exception $e) {
             $this->info('[Zenziva] Failed to send SMS!');
         }

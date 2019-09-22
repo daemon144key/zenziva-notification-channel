@@ -19,14 +19,14 @@ class ZenzivaServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register artisan command for sending SMS
+     * Register artisan command for sending SMS.
      */
     protected function registerArtisanCommands()
     {
-        $this->commands(array(
+        $this->commands([
             'TuxDaemon\ZenzivaNotificationChannel\Commands\ZenzivaSendCommand',
             'TuxDaemon\ZenzivaNotificationChannel\Commands\ZenzivaCheckCommand',
-        ));
+        ]);
     }
 
     /**
@@ -64,6 +64,6 @@ class ZenzivaServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return array('zenzivasms');
+        return ['zenzivasms'];
     }
 }
