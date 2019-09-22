@@ -211,9 +211,10 @@ class ZenzivaClient
             $rawdata = simplexml_load_string($response);
             $json = json_encode($rawdata);
             $parsedData = json_decode($json);
-        } catch (\Exception $e) {}
-                  
-        return ($parsedData && $parsedData->message && isset($parsedData->message->value) ? $parsedData->message->value : 0);
+        } catch (\Exception $e) {
+        }
+
+        return $parsedData && $parsedData->message && isset($parsedData->message->value) ? $parsedData->message->value : 0;
     }
 
     /**
