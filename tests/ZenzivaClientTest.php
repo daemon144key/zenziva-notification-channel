@@ -62,4 +62,10 @@ class ZenzivaClientTest extends \PHPUnit_Framework_TestCase
 
         $this->zenzivaClient->send($to, $message);
     }
+
+    /** @test */
+    public function it_check_sms_credit_left()
+    {
+        $this->zenzivaClient->checkBalance();
+    }
 }

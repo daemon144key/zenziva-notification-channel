@@ -10,12 +10,29 @@ class ZenzivaClient
     const TYPE_REGULER = 'reguler';
     const TYPE_MASKING = 'masking';
 
+    const REQUEST_TYPE_SENDING = 'sending';
+    const REQUEST_TYPE_CREDIT_CHECKING = 'checking';
+
     /**
      * Zenziva end point.
      *
      * @var string
      */
-    protected $url = 'https://{subdomain}.zenziva.net/apps/smsapi.php';
+    protected $url = 'https://{subdomain}.zenziva.net/apps';
+    
+    /**
+     * Zenziva path for sending sms
+     *
+     * @var string
+     */
+    protected $sendingPath = '/smsapi.php';
+
+    /**
+     * Zenziva path for checking sms balance/credit
+     *
+     * @var string
+     */
+    protected $creditCheckingPath = '/smsapibalance.php';
 
     /**
      * Zenziva userkey.
@@ -32,28 +49,28 @@ class ZenzivaClient
     protected $passkey;
 
     /**
-     * Phone number.
+     * Phone number destination, can altered by application.
      *
      * @var string
      */
     public $to;
 
     /**
-     * Message.
+     * Message, can altered by application.
      *
      * @var string
      */
     public $text;
 
     /**
-     * Sub-domain.
+     * Sub-domain, can altered by application.
      *
      * @var string
      */
     public $subdomain = 'reguler';
 
     /**
-     * SMS Type : Masking or reguler.
+     * SMS Type : Masking or reguler. Reguler is default type.
      *
      * @var string
      */
@@ -136,6 +153,8 @@ class ZenzivaClient
     }
 
     /**
+     * Sending SMS Request to SMS Gateway with given destination phone number and message
+     *
      * @param $to  Phone number
      * @param $text  Message
      *
@@ -150,7 +169,6 @@ class ZenzivaClient
         }
 
         $nbProcessed = 0;
-
         if ($destinationNumbers && count($destinationNumbers) > 0) {
             foreach ($destinationNumbers as $number) {
                 if (! is_string($text)) {
@@ -163,13 +181,11 @@ class ZenzivaClient
                 if (empty($this->to)) {
                     throw new ZenzivaException('One of your destination phone number is empty!');
                 }
-
                 if (is_null($this->text)) {
                     throw new ZenzivaException('Text is not set!');
                 }
 
-                $url = $this->buildQuery();
-
+                $url = $this->buildQuery(self::REQUEST_TYPE_SENDING);
                 $this->doRequest($url);
 
                 $nbProcessed++;
@@ -180,6 +196,25 @@ class ZenzivaClient
     }
 
     /**
+     * Get current SMS Credit/Balance
+     *
+     * @return int Number of SMS credit left
+     * @throws \ZenzivaException
+     */
+    public function checkBalance()
+    {
+        $url = $this->buildQuery(self::REQUEST_TYPE_CREDIT_CHECKING);
+        $response = $this->doRequest($url);
+        $rawdata = simplexml_load_string($response);
+        $json = json_encode($rawdata);
+        $parsedData = json_decode($json);
+                  
+        return ($parsedData && $parsedData->message && isset($parsedData->message->value) ? $parsedData->message->value : 0);
+    }
+
+    /**
+     * Do HTTP Request
+     *
      * @param  string $url
      * @return \Requests_Response
      */
@@ -193,7 +228,7 @@ class ZenzivaClient
      *
      * @return string
      */
-    protected function buildQuery()
+    protected function buildQuery($requestType)
     {
         if ($this->type == self::TYPE_MASKING) {
             $this->subdomain = 'alpha';
@@ -204,17 +239,26 @@ class ZenzivaClient
         }
 
         $url = str_replace('{subdomain}', $this->subdomain, $this->url);
+        if ($requestType == self::REQUEST_TYPE_CREDIT_CHECKING) {
+            $url .= $this->creditCheckingPath;
+        } else {
+            $url .= $this->sendingPath;
+        }
 
-        $params = http_build_query([
+        $params = [
             'userkey' => $this->userkey,
             'passkey' => $this->passkey,
-            'tipe' => $this->type,
-            'nohp' => $this->to,
-            'pesan' => $this->text,
-        ]);
+        ];
+        if ($requestType == self::REQUEST_TYPE_SENDING) {
+            $params = array_merge($params, [
+                'tipe' => $this->type,
+                'nohp' => $this->to,
+                'pesan' => $this->text,
+            ]);
+        }
 
-        $params = urldecode($params);
+        $requestParams = urldecode(http_build_query($params));
 
-        return $url.'?'.$params;
+        return $url.'?'.$requestParams;
     }
 }

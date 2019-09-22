@@ -38,6 +38,15 @@ You must install the service provider and add to your `config/app.php` (skip for
 ],
 ```
 
+Additionally you can add related facade in `config/app.php` :
+```php
+// config/app.php
+'aliases' => [
+    ...
+    'ZenzivaClient' => TuxDaemon\ZenzivaNotificationChannel\ZenzivaFacade::class,
+],
+```
+
 ### Setting up the zenziva-notification-channel service
 
 Add your Zenziva account userkey and passkeyto your `config/services.php`:
@@ -76,13 +85,37 @@ class OrderCreated extends Notification
 }
 ```
 
+Or call the function from facade :
+```php
+use ZenzivaClient;
+
+class Something
+{
+    public function send($to, $msg)
+    {
+        return ZenzivaClient::send("081234567890", "hello world");
+    }
+
+    public function checkBalance()
+    {
+        return ZenzivaClient::checkBalance();
+    }
+}
+```
+
+Or from CLI artisan command :
+```bash
+$ php artisan zenziva:send 081234567890 "hello world"
+$ php artisan zenziva:checkbalance
+```
+
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
 
 ## Testing
 
-``` bash
+```bash
 $ composer test
 ```
 
