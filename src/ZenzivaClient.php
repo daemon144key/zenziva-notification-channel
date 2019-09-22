@@ -19,16 +19,16 @@ class ZenzivaClient
      * @var string
      */
     protected $url = 'https://{subdomain}.zenziva.net/apps';
-    
+
     /**
-     * Zenziva path for sending sms
+     * Zenziva path for sending sms.
      *
      * @var string
      */
     protected $sendingPath = '/smsapi.php';
 
     /**
-     * Zenziva path for checking sms balance/credit
+     * Zenziva path for checking sms balance/credit.
      *
      * @var string
      */
@@ -153,7 +153,7 @@ class ZenzivaClient
     }
 
     /**
-     * Sending SMS Request to SMS Gateway with given destination phone number and message
+     * Sending SMS Request to SMS Gateway with given destination phone number and message.
      *
      * @param $to  Phone number
      * @param $text  Message
@@ -196,7 +196,7 @@ class ZenzivaClient
     }
 
     /**
-     * Get current SMS Credit/Balance
+     * Get current SMS Credit/Balance.
      *
      * @return int Number of SMS credit left
      * @throws \ZenzivaException
@@ -208,12 +208,12 @@ class ZenzivaClient
         $rawdata = simplexml_load_string($response);
         $json = json_encode($rawdata);
         $parsedData = json_decode($json);
-                  
-        return ($parsedData && $parsedData->message && isset($parsedData->message->value) ? $parsedData->message->value : 0);
+
+        return $parsedData && $parsedData->message && isset($parsedData->message->value) ? $parsedData->message->value : 0;
     }
 
     /**
-     * Do HTTP Request
+     * Do HTTP Request.
      *
      * @param  string $url
      * @return \Requests_Response

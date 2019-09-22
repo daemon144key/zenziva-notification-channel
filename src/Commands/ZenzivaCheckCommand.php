@@ -40,7 +40,7 @@ class ZenzivaCheckCommand extends Command
         try {
             $client = app('zenzivasms');
             $creditLeft = $client->checkBalance();
-            $this->info('[Zenziva] Credit left : ' . $creditLeft);
+            $this->info('[Zenziva] Credit left : '.$creditLeft);
         } catch (\Exception $e) {
             $this->info('[Zenziva] Failed to get credit info!');
         }
