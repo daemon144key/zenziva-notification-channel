@@ -204,12 +204,16 @@ class ZenzivaClient
     public function checkBalance()
     {
         $url = $this->buildQuery(self::REQUEST_TYPE_CREDIT_CHECKING);
-        $response = $this->doRequest($url);
-        $rawdata = simplexml_load_string($response);
-        $json = json_encode($rawdata);
-        $parsedData = json_decode($json);
-
-        return $parsedData && $parsedData->message && isset($parsedData->message->value) ? $parsedData->message->value : 0;
+        $parsedData = null;
+        try {
+            $responseObj = $this->doRequest($url);
+            $response = $responseObj->body;
+            $rawdata = simplexml_load_string($response);
+            $json = json_encode($rawdata);
+            $parsedData = json_decode($json);
+        } catch (\Exception $e) {}
+                  
+        return ($parsedData && $parsedData->message && isset($parsedData->message->value) ? $parsedData->message->value : 0);
     }
 
     /**
